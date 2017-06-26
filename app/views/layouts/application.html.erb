@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Atomiccampaign</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+    <div id="user-widget">
+      <% if current_user %>
+        Welcome <strong><%= current_user.name %></strong>!
+        <%= link_to "Sign out", signout_path %>
+      <% else %>
+        <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+      <% end %>
+    </div>
+  </body>
+
+
+</html>
