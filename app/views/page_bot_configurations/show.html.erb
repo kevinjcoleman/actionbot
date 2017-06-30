@@ -1,5 +1,5 @@
 <h3>Bot configuration</h3>
-<% if @bot.whitelisted_domains.any? %>
+<% if @bot.whitelisted_domains.try(:any?) %>
   <h4>Authorized domains.</h4>
   <% @bot.whitelisted_domains.each do |domain| %>
     <li><%= domain %> <strong><%= link_to 'Remove', page_bot_configuration_path(@bot, configuration: {domain: domain}), method: :delete, data: { confirm: "Are you sure?" }, class: 'text-danger' %></strong></li>
