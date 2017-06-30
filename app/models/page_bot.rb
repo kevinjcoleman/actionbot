@@ -12,7 +12,7 @@ class PageBot < ApplicationRecord
   end
 
   def whitelisted_domains
-    thread_settings.domains
+    thread_settings.domains || []
   end
 
   def thread_settings
