@@ -1,5 +1,9 @@
 class PageBotsController < ApplicationController
+  include PageBotable
+  before_action :find_bot, only: [:show]
   def show
-    @bot = PageBot.find(params[:id])
+  end
+
+  def index
   end
 end

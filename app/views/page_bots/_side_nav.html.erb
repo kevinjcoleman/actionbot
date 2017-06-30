@@ -1,0 +1,6 @@
+<div class='col-md-2'>
+  <ul class="nav nav-pills nav-stacked">
+    <li class="<%= active?('page_bots') %>"><%= link_to "Actions", page_bot_path(@bot) %></li>
+    <li class="<%= active?('page_bot_configurations') %>"><%= link_to "Configuration", page_bot_configuration_path(@bot) %></li>
+  </ul>
+</div>

@@ -35,18 +35,24 @@ module BotMessaging
         puts message.payload
         case message.payload
           when 'EVENT'
-            event_loader
+            EventResponder.new(message, bot).respond!
           when 'GET_STARTED_PAYLOAD'
             welcome_message
           else
-            missing_message
+            if message.payload.include?('EVENT-LEARN-')
+              EventDetailsResponder.new(message, bot).respond!
+            elsif message.payload.include?('RSVP-')
+              EventRsvpResponder.new(message, bot).respond!
+            else
+              missing_message
+            end
         end
       end
     end
 
     def welcome_message
       message.reply(
-        text: 'What would you like to do?',
+        text: "Hello #{username}, what would you like to do?",
           quick_replies: [
             {
               content_type: 'text',
@@ -112,35 +118,8 @@ module BotMessaging
       @bot ||= PageBot.find_by(page_id: message.recipient['id'])
     end
 
-    def event_loader
-      Facebook::Messenger::Profile.set({
-        persistent_menu: [
-          {
-            locale: 'default',
-            composer_input_disabled: true,
-            call_to_actions: [
-              {
-                title: 'Learn more',
-                type: 'nested',
-                call_to_actions: [
-                  ISSUES_POSTBACK,
-                  CANDIDATE_POSTBACK,
-                  NEWS_POSTBACK
-                ]
-              },
-              {
-                title: 'Take action!',
-                type: 'nested',
-                call_to_actions: [
-                  EVENT_POSTBACK,
-                  VOLUNTEER_POSTBACK,
-                  DONATE_POSTBACK
-                ]
-              }
-            ]
-          }
-        ]
-      }, access_token: bot.access_token)
+    def username
+      bot.graph.get_object(message.sender['id'])['first_name']
     end
   end
 end

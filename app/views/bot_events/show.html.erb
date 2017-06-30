@@ -1,0 +1,7 @@
+<h3>Event: <%= @event.name %></h3>
+
+<p>description: <%= @event.description %></p>
+<p>address: <%= @event.addresses.first.to_s %></p>
+<p>start_at: <%= @event.time_windows.first.start_at.to_formatted_s(:long_ordinal) %></p>
+<p>end_at: <%= @event.time_windows.first.end_at.to_formatted_s(:long_ordinal) %></p>
+<p>img: <%= image_tag @event.picture_url %></p>

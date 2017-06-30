@@ -1,9 +1,1 @@
-<% if current_user %>
-  <h1>Select your page to add the bot</h1>
-  <% current_user.pages.each do |page| %>
-    <li><%= link_to page["name"], user_page_index_path(page: {page_id: page['id'],
-                                                              name: page['name'],
-                                                              access_token: page['access_token'],
-                                                              perms: page['perms']}), method: :post %></li>
-  <% end %>
-<% end %>
+<h1>Welcome to ActionBot!</h1>

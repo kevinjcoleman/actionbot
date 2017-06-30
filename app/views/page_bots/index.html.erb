@@ -1,0 +1,15 @@
+<% if current_user %>
+  <h1>Select your page to add the bot</h1>
+  <% current_user.pages.each do |page| %>
+    <li><%= link_to page["name"], user_page_index_path(page: {page_id: page['id'],
+                                                              name: page['name'],
+                                                              access_token: page['access_token'],
+                                                              perms: page['perms']}), method: :post %></li>
+  <% end %>
+  <% if current_user.page_bots.any? %>
+  <h3>Authorized pages</h3>
+    <% current_user.page_bots.each do |bot| %>
+      <%= link_to bot.name, page_bot_path(bot) %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625013116) do
+ActiveRecord::Schema.define(version: 20170629045144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "country_code"
+    t.string "addressable_type"
+    t.bigint "addressable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
+  end
+
+  create_table "bot_events", force: :cascade do |t|
+    t.bigint "page_bot_id"
+    t.string "name"
+    t.text "description"
+    t.string "picture_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_bot_id"], name: "index_bot_events_on_page_bot_id"
+  end
 
   create_table "page_bots", force: :cascade do |t|
     t.string "access_token"
@@ -22,7 +45,18 @@ ActiveRecord::Schema.define(version: 20170625013116) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.bigint "page_id"
+    t.string "picture_url"
     t.index ["user_id"], name: "index_page_bots_on_user_id"
+  end
+
+  create_table "time_windows", force: :cascade do |t|
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string "timeable_type"
+    t.bigint "timeable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["timeable_type", "timeable_id"], name: "index_time_windows_on_timeable_type_and_timeable_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,7 +67,9 @@ ActiveRecord::Schema.define(version: 20170625013116) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture_url"
   end
 
+  add_foreign_key "bot_events", "page_bots"
   add_foreign_key "page_bots", "users"
 end

@@ -1,0 +1,14 @@
+<h3>Bot configuration</h3>
+<% if @bot.whitelisted_domains.any? %>
+  <h4>Authorized domains.</h4>
+  <% @bot.whitelisted_domains.each do |domain| %>
+    <li><%= domain %> <strong><%= link_to 'Remove', page_bot_configuration_path(@bot, configuration: {domain: domain}), method: :delete, data: { confirm: "Are you sure?" }, class: 'text-danger' %></strong></li>
+  <% end %>
+<% end %>
+<h4>Add a new domain</h4>
+<%= simple_form_for(@bot, url: page_bot_configuration_path, method: :put) do |f| %>
+  <%= simple_fields_for :configuration do |o| %>
+    <%= o.input :domain, placeholder: 'New whitelisted domain', required: false %>
+  <% end %>
+  <%= f.button :submit, 'Add domain', class: 'btn btn-success' %>
+<% end %>

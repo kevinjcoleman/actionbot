@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_at: 2017-06-28 21:47:50
+  end_at: 2017-06-28 21:47:50
+  timeable: one
+  timeable_type: Timeable
+
+two:
+  start_at: 2017-06-28 21:47:50
+  end_at: 2017-06-28 21:47:50
+  timeable: two
+  timeable_type: Timeable

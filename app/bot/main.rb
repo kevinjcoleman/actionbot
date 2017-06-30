@@ -1,5 +1,6 @@
 require 'facebook/messenger'#
 include Facebook::Messenger#
+include BotMessaging
 Facebook::Messenger::Subscriptions.subscribe(access_token: ENV["ACCESS_TOKEN"])#
 puts 'the main file was loaded'
 

@@ -1,0 +1,11 @@
+<h3>Events</h3>
+
+<% if @events.any? %>
+  <% @events.each do |event| %>
+    <li><%= link_to event.name, page_bot_bot_event_path(@bot, event) %> <%= link_to 'Edit', edit_page_bot_bot_event_path(@bot, event) %></li>
+  <% end %>
+<% else %>
+  <h3>You don't have any events yet.</h3>
+<% end %>
+
+<%= link_to 'New event', new_page_bot_bot_event_path(@bot), class: 'btn btn-lg btn-success'%>
