@@ -17,10 +17,11 @@ class BotEventsController < ApplicationController
 
   def create
     service = BotEventCreationService.new(@bot, bot_event_params)
-    if service.create_event
+    begin
+      service.create_event
       redirect_to page_bot_bot_event_path(@bot, service.event)
-    else
-      flash[:danger] = "Something went wrong."
+    rescue => e
+      flash[:danger] = "#{e.message}"
       render :new
     end
   end
@@ -30,10 +31,11 @@ class BotEventsController < ApplicationController
 
   def update
     service = BotEventUpdaterService.new(@bot, @event, bot_event_params)
-    if service.update_event
+    begin
+      service.update_event
       redirect_to page_bot_bot_event_path(@bot, @event)
-    else
-      flash[:danger] = "Something went wrong."
+    rescue => e
+      flash[:error] = "#{e.message}"
       render :edit
     end
   end

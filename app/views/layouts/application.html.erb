@@ -49,6 +49,7 @@
     </nav>
 
     <div class="container main-container">
+      <%= flash_messages %>
       <% if controller?('page_bots', 'page_bot_configurations', 'bot_events') && !(controller?('page_bots') && action?('index')) %>
         <%= render 'page_bots/title', bot: @bot %>
         <%= render 'page_bots/side_nav' %>
