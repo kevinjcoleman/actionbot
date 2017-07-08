@@ -36,10 +36,10 @@ class EventResponder
        subtitle: "#{event.addresses.first.to_s}\n#{event.time_windows.first.start_at.strftime('%m/%d/%Y at %l %P')} to #{event.time_windows.first.end_at.strftime('%m/%d/%Y  at %l %P')}",
        default_action: {
          type: "web_url",
-         url:"https://e40167cc.ngrok.io",
+         url:"https://74b06bc4.ngrok.io",
          messenger_extensions: true,
          webview_height_ratio: "tall",
-         fallback_url: "https://e40167cc.ngrok.io"
+         fallback_url: "https://74b06bc4.ngrok.io"
        },
        buttons:[
          {

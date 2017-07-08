@@ -1,24 +1,24 @@
 <%= simple_form_for([@bot, @event]) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :name %>
+  <%= f.input :name, placeholder: "GOTV canvass, beach cleanup, fundraising event" %>
   <div class="row">
     <div class="col-md-6">
-      <%= f.input :start_at, as: :string, input_html: { value: datetime_form_helper(:start_at) } %>
+      <%= f.input :start_at, as: :string, placeholder: 'November 4th at 9am', input_html: { value: datetime_form_helper(:start_at) } %>
     </div>
     <div class="col-md-6">
-      <%= f.input :end_at, as: :string, input_html: { value: datetime_form_helper(:end_at) } %>
+      <%= f.input :end_at, as: :string, placeholder: 'November 4th at 6pm', input_html: { value: datetime_form_helper(:end_at) } %>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
-      <%= f.input :address_line, as: :string, required: false, input_html: { value: address_form_helper } %>
+      <%= f.input :address_line, as: :string, placeholder: '1600 Pennsylvania Avenue, Washington, DC', hint: 'No need to designate USA', required: false, input_html: { value: address_form_helper } %>
     </div>
     <div class="col-md-6">
-      <%= f.input :picture_url %>
+      <%= f.input :picture_url, placeholder: "A link to a relavant picture", hint: 'Uploads coming soon.' %>
     </div>
   </div>
 
-  <%= f.input :description, as: :text %>
+  <%= f.input :description, as: :text, placeholder: 'Come join us for our event. Remember to bring sunscreen, your friends and a stoked attitude.' %>
 
   <%= f.button :submit, @event.created_at ? 'Update event' : 'Create event', class: 'btn btn-success' %>
 <% end %>

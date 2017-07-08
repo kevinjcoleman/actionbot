@@ -7,11 +7,11 @@ class FacebookThreadSettings
   end
 
   def domains
-    domain_index["data"][0]["whitelisted_domains"]
+    domain_index[0]["whitelisted_domains"] if domain_index.any?
   end
 
   def domain_index
-    client.get({fields: 'whitelisted_domains'})
+    @domain_index ||= client.get({fields: 'whitelisted_domains'})['data']
   end
 
   def add_domain(domain)

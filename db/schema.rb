@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170629045144) do
+ActiveRecord::Schema.define(version: 20170708065359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20170629045144) do
     t.index ["page_bot_id"], name: "index_bot_events_on_page_bot_id"
   end
 
+  create_table "event_rsvps", force: :cascade do |t|
+    t.bigint "bot_event_id"
+    t.bigint "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bot_event_id"], name: "index_event_rsvps_on_bot_event_id"
+    t.index ["sender_id"], name: "index_event_rsvps_on_sender_id"
+  end
+
   create_table "page_bots", force: :cascade do |t|
     t.string "access_token"
     t.bigint "user_id"
@@ -47,6 +56,16 @@ ActiveRecord::Schema.define(version: 20170629045144) do
     t.bigint "page_id"
     t.string "picture_url"
     t.index ["user_id"], name: "index_page_bots_on_user_id"
+  end
+
+  create_table "senders", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "profile_pic"
+    t.string "gender"
+    t.string "facebook_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "time_windows", force: :cascade do |t|

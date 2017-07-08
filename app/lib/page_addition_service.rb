@@ -1,3 +1,5 @@
+
+
 class PageAdditionService
   attr_accessor :user, :params, :bot
   def initialize(page_params: , user: )
@@ -48,18 +50,18 @@ class PageAdditionService
               title: 'Learn more',
               type: 'nested',
               call_to_actions: [
-                BotMessaging::IncomingMessage::ISSUES_POSTBACK,
-                BotMessaging::IncomingMessage::CANDIDATE_POSTBACK,
-                BotMessaging::IncomingMessage::NEWS_POSTBACK
+                ::BotMessaging::IncomingMessage::ISSUES_POSTBACK,
+                ::BotMessaging::IncomingMessage::CANDIDATE_POSTBACK,
+                ::BotMessaging::IncomingMessage::NEWS_POSTBACK
               ]
             },
             {
               title: 'Take action!',
               type: 'nested',
               call_to_actions: [
-                BotMessaging::IncomingMessage::EVENT_POSTBACK,
-                BotMessaging::IncomingMessage::VOLUNTEER_POSTBACK,
-                BotMessaging::IncomingMessage::DONATE_POSTBACK
+                ::BotMessaging::IncomingMessage::EVENT_POSTBACK,
+                ::BotMessaging::IncomingMessage::VOLUNTEER_POSTBACK,
+                ::BotMessaging::IncomingMessage::DONATE_POSTBACK
               ]
             }
           ]

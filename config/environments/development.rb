@@ -7,14 +7,15 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
   config.web_console.whitelisted_ips = ['2a03:2880:2060:8fe5:face:b00c:0:8000',
                                         '2a03:2880:11:2ffd:face:b00c:0:8000',
                                         '2a03:2880:2060:8fe6:face:b00c:0:8000',
                                         '2a03:2880:2030:cff4:face:b00c:0:8000',
                                         '2a03:2880:2020:bfca:face:b00c:0:8000',
                                         '2a03:2880:2030:cfe4:face:b00c:0:8000',
-                                        '2a03:2880:11:2ffd:face:b00c:0:8000']
+                                        '2a03:2880:11:2ffd:face:b00c:0:8000',
+                                        '2a03:2880:11:2ffc:face:b00c:0:8000']
 
   # Show full error reports.
   config.consider_all_requests_local = true

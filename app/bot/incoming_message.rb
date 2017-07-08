@@ -2,6 +2,8 @@ include Facebook::Messenger
 
 module BotMessaging
   class IncomingMessage
+    include BotInfo
+
     ISSUES_POSTBACK = { type: 'postback', title: 'Issues', payload: 'ISSUES' }
     CANDIDATE_POSTBACK = { type: 'postback', title: 'Candidate', payload: 'CANDIDATE' }
     NEWS_POSTBACK = {type: 'postback', title: 'News', payload: 'NEWS' }
@@ -12,6 +14,7 @@ module BotMessaging
     attr_accessor :message
     def initialize(message)
       @message = message
+      initialize_sender
     end
 
     def respond!
@@ -26,10 +29,10 @@ module BotMessaging
               action_message
             else
           end
-        else
-          if /get started/.match(message.text)
-            welcome_message
-          end
+        elsif /get started/.match(message.text)
+          welcome_message
+        elsif
+          /rsvps/.match(message.text)
         end
       elsif message.is_a? Facebook::Messenger::Incoming::Postback
         puts message.payload
@@ -52,7 +55,7 @@ module BotMessaging
 
     def welcome_message
       message.reply(
-        text: "Hello #{username}, what would you like to do?",
+        text: "Hello #{sender.first_name}, what would you like to do?",
           quick_replies: [
             {
               content_type: 'text',
@@ -74,7 +77,7 @@ module BotMessaging
           type: 'template',
           payload: {
             template_type: 'button',
-            text: 'How would you like to take action?',
+            text: "I'm so excited you'd like to participate #{sender.first_name}! 😃 How would you like to take action?",
             buttons: [
               EVENT_POSTBACK,
               VOLUNTEER_POSTBACK,
@@ -104,7 +107,7 @@ module BotMessaging
 
     def missing_message
       giphy_url = ::Giphy.random.image_original_url.to_s
-      message.reply(text: 'It looks like that\'s not setup yet.')
+      message.reply(text: "I'm sorry #{sender.first_name}, that looks like that\'s not setup yet.")
       message.reply(
         attachment: {
           type: 'image',
@@ -114,12 +117,13 @@ module BotMessaging
         }
       )
     end
-    def bot
-      @bot ||= PageBot.find_by(page_id: message.recipient['id'])
-    end
 
-    def username
-      bot.graph.get_object(message.sender['id'])['first_name']
+    def initialize_sender
+      if !sender
+        Sender.create_from_facebook!(message.sender['id'], bot.graph.get_object(message.sender['id']))
+      else
+        sender.update_from_facebook!(Sender.initialized_params(bot.graph.get_object(message.sender['id'])))
+      end
     end
   end
 end
