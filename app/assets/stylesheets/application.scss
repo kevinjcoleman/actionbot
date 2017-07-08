@@ -14,8 +14,18 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  // Located here https://github.com/twbs/bootstrap-rubygem/blob/master/templates/project/_bootstrap-variables.scss
 
- @import "bootstrap-sprockets";
- @import "bootstrap";
+//Import bootstrap-sprockets
+@import "bootstrap-sprockets";
+
+// Import cerulean variables
+@import "bootswatch/paper/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// And finally bootswatch style itself
+@import "bootswatch/paper/bootswatch";
+
 .navbar-brand {
   padding-top: 0px;
 }
