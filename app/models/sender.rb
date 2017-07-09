@@ -9,6 +9,8 @@ class Sender < ApplicationRecord
   validates :profile_pic, presence: true
   validates :gender, presence: true
 
+  has_many :event_rsvps
+
   def self.create_from_facebook!(facebook_id, facebook_params)
     self.create!(initialized_params(facebook_params).merge({facebook_id: facebook_id})) unless find_by(facebook_id: facebook_id)
   end
