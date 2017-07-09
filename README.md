@@ -9,3 +9,7 @@
 Tester credentials:
 - uname: `qlemrugols_1499489641@tfbnw.net`  
 - password: `tester`
+
+## Page tips
+1. Get started needs to be setup for the page.
+2. The page must be published for m.me links to actually work.
