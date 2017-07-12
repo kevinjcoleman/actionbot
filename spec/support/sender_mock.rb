@@ -1,0 +1,3 @@
+class SenderMock
+  
+end

@@ -21,7 +21,7 @@ class BotEventCreationService
 
   def address_creator
     parsed_address = parse_address(event_params[:address_line])
-    event.addresses.create!(street: parsed_address.to_s(:line1),
+    event.create_address!(street: parsed_address.to_s(:line1),
                     city: parsed_address.city,
                     state: parsed_address.state,
                     country_code: "US",
@@ -29,6 +29,6 @@ class BotEventCreationService
   end
 
   def time_window_creator
-    event.time_windows.create!(start_at: parsed_chronic_datetime(event_params[:start_at]), end_at: parsed_chronic_datetime(event_params[:end_at]))
+    event.create_time_window!(start_at: parsed_chronic_datetime(event_params[:start_at]), end_at: parsed_chronic_datetime(event_params[:end_at]))
   end
 end

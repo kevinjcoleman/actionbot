@@ -39,6 +39,7 @@ guard :rspec, cmd: "spring rspec" do
   ruby = dsl.ruby
   dsl.watch_spec_files_for(ruby.lib_files)
 
+  watch(%r{^app/(.+)\.rb$})                   { |m| "spec/#{m[1]}_spec.rb" }
   # Rails files
   rails = dsl.rails(view_extensions: %w(erb haml slim))
   dsl.watch_spec_files_for(rails.app_files)

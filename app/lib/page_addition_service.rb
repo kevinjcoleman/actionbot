@@ -50,18 +50,18 @@ class PageAdditionService
               title: 'Learn more',
               type: 'nested',
               call_to_actions: [
-                ::BotMessaging::IncomingMessage::ISSUES_POSTBACK,
-                ::BotMessaging::IncomingMessage::CANDIDATE_POSTBACK,
-                ::BotMessaging::IncomingMessage::NEWS_POSTBACK
+                ::BotInfo::ISSUES_POSTBACK,
+                ::BotInfo::CANDIDATE_POSTBACK,
+                ::BotInfo::NEWS_POSTBACK
               ]
             },
             {
               title: 'Take action!',
               type: 'nested',
               call_to_actions: [
-                ::BotMessaging::IncomingMessage::EVENT_POSTBACK,
-                ::BotMessaging::IncomingMessage::VOLUNTEER_POSTBACK,
-                ::BotMessaging::IncomingMessage::DONATE_POSTBACK
+                ::BotInfo::EVENT_POSTBACK,
+                ::BotInfo::VOLUNTEER_POSTBACK,
+                ::BotInfo::JOIN_POSTBACK
               ]
             }
           ]

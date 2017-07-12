@@ -29,24 +29,24 @@ describe BotEventCreationService do
 
     context 'addresses' do
       it 'creates an address' do
-        expect(@event.addresses.first).to_not be_nil
+        expect(@event.address).to_not be_nil
       end
 
       it 'creates an address with all valid attributes' do
         [:street, :city, :state, :zip].each do |column|
-          expect(@event.addresses.first.send(column)).to_not be_nil
+          expect(@event.address.send(column)).to_not be_nil
         end
       end
     end
 
     context 'time window' do
       it 'creates a timewindow' do
-        expect(@event.time_windows.first).to_not be_nil
+        expect(@event.time_window).to_not be_nil
       end
 
       it 'creates an address with all valid attributes' do
         [:start_at, :end_at].each do |column|
-          expect(@event.time_windows.first.send(column)).to_not be_nil
+          expect(@event.time_window.send(column)).to_not be_nil
         end
       end
     end

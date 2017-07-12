@@ -35,7 +35,6 @@ gem 'figaro'
 gem 'facebook-messenger'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'pry-rails', :group => :development
 gem 'giphy'
 gem 'omniauth'
 gem 'omniauth-facebook', '4.0.0'
@@ -59,6 +58,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'spring-commands-rspec'
+  gem 'pry-rails'
 end
 
 group :development do

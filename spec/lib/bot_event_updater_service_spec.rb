@@ -26,17 +26,17 @@ describe BotEventUpdaterService do
 
     context 'addresses' do
       it 'updates an address' do
-        expect(event.addresses.first.to_s).to eq('3205 Los Feliz Blvd, Los Angeles, CA 90039')
+        expect(event.address.to_s).to eq('3205 Los Feliz Blvd, Los Angeles, CA 90039')
       end
     end
 
     context 'time window' do
       it 'updates the start_at' do
-        expect(event.time_windows.first.start_at).to_not eq(DateTime.now)
+        expect(event.time_window.start_at).to_not eq(DateTime.now)
       end
 
       it 'updates the start_at' do
-        expect(event.time_windows.first.end_at).to_not eq((DateTime.now + 3.hours))
+        expect(event.time_window.end_at).to_not eq((DateTime.now + 3.hours))
       end
     end
   end

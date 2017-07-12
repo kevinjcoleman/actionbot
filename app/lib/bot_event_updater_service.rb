@@ -21,7 +21,7 @@ class BotEventUpdaterService
 
   def address_updator
     parsed_address = parse_address(event_params[:address_line])
-    event.addresses.first.update_attributes!(street: parsed_address.to_s(:line1),
+    event.address.update_attributes!(street: parsed_address.to_s(:line1),
                     city: parsed_address.city,
                     state: parsed_address.state,
                     country_code: "US",
@@ -29,6 +29,6 @@ class BotEventUpdaterService
   end
 
   def time_window_updator
-    event.time_windows.first.update_attributes!(start_at: parsed_chronic_datetime(event_params[:start_at]), end_at: parsed_chronic_datetime(event_params[:end_at]))
+    event.time_window.update_attributes!(start_at: parsed_chronic_datetime(event_params[:start_at]), end_at: parsed_chronic_datetime(event_params[:end_at]))
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170708065359) do
+ActiveRecord::Schema.define(version: 20170709225817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,18 @@ ActiveRecord::Schema.define(version: 20170708065359) do
     t.index ["user_id"], name: "index_page_bots_on_user_id"
   end
 
+  create_table "referrers", force: :cascade do |t|
+    t.bigint "referrer_id"
+    t.bigint "referree_id"
+    t.string "referrable_type"
+    t.bigint "referrable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["referrable_type", "referrable_id"], name: "index_referrers_on_referrable_type_and_referrable_id"
+    t.index ["referree_id"], name: "index_referrers_on_referree_id"
+    t.index ["referrer_id"], name: "index_referrers_on_referrer_id"
+  end
+
   create_table "senders", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -91,4 +103,6 @@ ActiveRecord::Schema.define(version: 20170708065359) do
 
   add_foreign_key "bot_events", "page_bots"
   add_foreign_key "page_bots", "users"
+  add_foreign_key "referrers", "senders", column: "referree_id"
+  add_foreign_key "referrers", "senders", column: "referrer_id"
 end

@@ -56,7 +56,11 @@ module BotInfo
   end
 
   def action_message
-    message.reply(
+    message.reply(action_message_params)
+  end
+
+  def action_message_params
+    {
       attachment: {
         type: 'template',
         payload: {
@@ -69,23 +73,25 @@ module BotInfo
           ]
         }
       }
-    )
+    }
   end
 
   def learn_message
-    message.reply(
-      attachment: {
-        type: 'template',
-        payload: {
-          template_type: 'button',
-          text: 'What would you learn more about?',
-          buttons: [
-            ISSUES_POSTBACK,
-            CANDIDATE_POSTBACK,
-            NEWS_POSTBACK
-          ]
-        }
+    message.reply(learn_message_params)
+  end
+
+  def learn_message_params
+    {attachment: {
+      type: 'template',
+      payload: {
+        template_type: 'button',
+        text: 'What would you learn more about?',
+        buttons: [
+          ISSUES_POSTBACK,
+          CANDIDATE_POSTBACK,
+          NEWS_POSTBACK
+        ]
       }
-    )
+    }}
   end
 end

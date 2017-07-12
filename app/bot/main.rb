@@ -11,3 +11,7 @@ end
 Bot.on :postback do |postback|
   BotMessaging::IncomingMessage.new(postback).respond!
 end
+
+Bot.on :referral do |referral|
+  BotMessaging::IncomingMessage.new(referral).respond!
+end

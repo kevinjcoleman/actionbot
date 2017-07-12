@@ -44,6 +44,12 @@ module BotMessaging
               missing_message
             end
         end
+      elsif message.is_a? Facebook::Messenger::Incoming::Referral
+        if /EVENT-[\d]+-REF-[\d]+/.match(message.ref)
+          EventReferralResponder.new(message).respond!
+        else
+          missing_message
+        end
       end
     end
 
